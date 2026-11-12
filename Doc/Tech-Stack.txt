@@ -1,0 +1,17 @@
+-------------------Node js backend----------------------
+---using Node JS  framework for backend funcitonalites--- use powershell to start the installtion
+its start installed at root directory - C/Programs/system32 files
+
+
+# Download and install fnm:
+winget install Schniz.fnm
+# In lieu of restarting the shell
+fnm env --use-on-cd --shell powershell | Out-String | Invoke-Expression
+# Download and install Node.js:
+fnm install --use 26
+# Verify the Node.js version:
+node -v # Should print "v26.13.0".
+# Verify npm version:
+npm -v # Should print "11.20.0".
+
+--------------------------------------------------------

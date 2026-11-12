@@ -1,0 +1,733 @@
+/* ===================================================
+   ❤️ ROMANTIC BIRTHDAY SURPRISE THEME ❤️
+   =================================================== */
+
+:root {
+    --primary: #ff4f81;
+    --primary-hover: #e63e70;
+    --primary-gradient: linear-gradient(135deg, #ff4f81, #ff758c);
+    --secondary-gradient: linear-gradient(135deg, #ff758c 0%, #ff7eb3 50%, #fd868c 100%);
+    --card-bg: rgba(255, 255, 255, 0.94);
+    --card-border: rgba(255, 255, 255, 0.8);
+    --text-dark: #2d1822;
+    --text-muted: #6e5863;
+    --shadow-soft: 0 15px 35px rgba(255, 79, 129, 0.2), 0 5px 15px rgba(0, 0, 0, 0.08);
+    --shadow-modal: 0 25px 60px rgba(0, 0, 0, 0.4);
+    --font-main: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-script: 'Dancing Script', cursive;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--font-main);
+    -webkit-tap-highlight-color: transparent;
+}
+
+html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+}
+
+body {
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #ff758c, #ff7eb3, #ffd1dc);
+    background-size: 300% 300%;
+    animation: gradientShift 12s ease infinite;
+    overflow-x: hidden;
+    position: relative;
+    padding: max(16px, env(safe-area-inset-top)) max(14px, env(safe-area-inset-right)) max(20px, env(safe-area-inset-bottom)) max(14px, env(safe-area-inset-left));
+    color: var(--text-dark);
+}
+
+button, input, select, textarea, .toggle-eye, .modal-close {
+    touch-action: manipulation;
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* ===================================================
+   FLOATING HEARTS IN BACKGROUND
+   =================================================== */
+.hearts-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.floating-heart {
+    position: absolute;
+    bottom: -40px;
+    font-size: 24px;
+    animation: floatUp linear infinite;
+    opacity: 0.6;
+    filter: drop-shadow(0 2px 5px rgba(255, 105, 180, 0.4));
+    user-select: none;
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(0) rotate(0deg) scale(0.8);
+        opacity: 0;
+    }
+    15% {
+        opacity: 0.75;
+    }
+    85% {
+        opacity: 0.75;
+    }
+    100% {
+        transform: translateY(-110vh) rotate(360deg) scale(1.2);
+        opacity: 0;
+    }
+}
+
+/* ===================================================
+   MAIN LAYOUT & CARDS
+   =================================================== */
+.main-wrapper {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    max-width: 580px;
+    display: flex;
+    justify-content: center;
+}
+
+.card {
+    background: var(--card-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1.5px solid var(--card-border);
+    border-radius: 28px;
+    padding: 40px 32px;
+    box-shadow: var(--shadow-soft);
+    text-align: center;
+    width: 100%;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* ===================================================
+   LOGIN SECTION
+   =================================================== */
+.login-box {
+    max-width: 420px;
+    margin: 0 auto;
+}
+
+.badge-icon {
+    font-size: 52px;
+    margin-bottom: 10px;
+    display: inline-block;
+    animation: bounce 2.2s infinite ease-in-out;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+
+.romantic-title {
+    font-size: 2.2rem;
+    font-family: var(--font-script);
+    color: var(--primary);
+    margin-bottom: 6px;
+    font-weight: 700;
+}
+
+.subtitle {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    margin-bottom: 24px;
+}
+
+.form-group {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.input-label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 8px;
+    letter-spacing: 0.3px;
+}
+
+.input-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-icon {
+    position: absolute;
+    left: 14px;
+    font-size: 1.1rem;
+    color: #999;
+    pointer-events: none;
+}
+
+.input-container input {
+    width: 100%;
+    min-height: 48px;
+    padding: 12px 48px 12px 44px;
+    border: 2px solid #ffccd9;
+    background: #fff;
+    border-radius: 14px;
+    font-size: 16px; /* Android Chrome auto-zoom fix */
+    color: var(--text-dark);
+    outline: none;
+    transition: all 0.25s ease;
+}
+
+.input-container input:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px rgba(255, 79, 129, 0.15);
+}
+
+.toggle-eye {
+    position: absolute;
+    right: 4px;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    font-size: 1.25rem;
+    cursor: pointer;
+    color: #888;
+    transition: transform 0.2s;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.toggle-eye:hover {
+    transform: scale(1.15);
+}
+
+.btn-primary {
+    width: 100%;
+    min-height: 50px;
+    background: var(--primary-gradient);
+    color: white;
+    border: none;
+    padding: 14px 24px;
+    border-radius: 14px;
+    cursor: pointer;
+    font-size: 1.05rem;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    box-shadow: 0 8px 20px rgba(255, 79, 129, 0.35);
+    transition: all 0.25s ease;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 25px rgba(255, 79, 129, 0.45);
+}
+
+.btn-primary:active {
+    transform: scale(0.98);
+}
+
+.status-message {
+    min-height: 24px;
+    margin-top: 14px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.status-message.error {
+    color: #d81b60;
+}
+
+.status-message.success {
+    color: #2e7d32;
+}
+
+.hint-box {
+    margin-top: 18px;
+    padding: 10px 14px;
+    background: rgba(255, 240, 245, 0.8);
+    border-radius: 12px;
+    border: 1px dashed #ff99bb;
+    font-size: 0.85rem;
+    color: #c2185b;
+    animation: fadeInScale 0.35s ease-out;
+}
+
+/* Shake animation for wrong password */
+.shake {
+    animation: shakeAnim 0.5s cubic-bezier(.36,.07,.19,.97) both;
+}
+
+@keyframes shakeAnim {
+    10%, 90% { transform: translate3d(-3px, 0, 0); }
+    20%, 80% { transform: translate3d(5px, 0, 0); }
+    30%, 50%, 70% { transform: translate3d(-6px, 0, 0); }
+    40%, 60% { transform: translate3d(6px, 0, 0); }
+}
+
+/* ===================================================
+   BIRTHDAY CELEBRATION SECTION
+   =================================================== */
+.birthday-page {
+    max-width: 580px;
+    padding: 45px 36px;
+    animation: fadeInScale 0.6s ease forwards;
+}
+
+.celebration-badge {
+    display: inline-block;
+    background: #ffe3ec;
+    color: var(--primary);
+    font-size: 0.85rem;
+    font-weight: 700;
+    padding: 6px 16px;
+    border-radius: 20px;
+    margin-bottom: 12px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.celebration-title {
+    font-size: 2.6rem;
+    font-family: var(--font-script);
+    color: var(--primary);
+    line-height: 1.2;
+    margin-bottom: 6px;
+    text-shadow: 1px 2px 4px rgba(255, 79, 129, 0.2);
+}
+
+.princess-tag {
+    font-size: 1.15rem;
+    color: #b83260;
+    font-weight: 600;
+    margin-bottom: 24px;
+}
+
+.letter-card {
+    background: rgba(255, 255, 255, 0.85);
+    border: 1px solid rgba(255, 200, 215, 0.6);
+    border-radius: 20px;
+    padding: 28px 24px;
+    text-align: left;
+    box-shadow: inset 0 2px 6px rgba(255, 79, 129, 0.05);
+    margin-bottom: 26px;
+    position: relative;
+}
+
+.letter-card::before {
+    content: "“";
+    position: absolute;
+    top: 6px;
+    left: 14px;
+    font-family: serif;
+    font-size: 60px;
+    color: rgba(255, 79, 129, 0.15);
+    line-height: 1;
+}
+
+.letter-salutation {
+    font-family: var(--font-script);
+    font-size: 1.6rem;
+    color: var(--primary);
+    font-weight: 700;
+    margin-bottom: 14px;
+}
+
+.letter-body {
+    font-size: 0.98rem;
+    line-height: 1.75;
+    color: #4a343e;
+    margin-bottom: 16px;
+}
+
+.letter-closing {
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: var(--text-dark);
+    margin-top: 10px;
+    border-top: 1px dashed rgba(255, 120, 160, 0.3);
+    padding-top: 14px;
+}
+
+.action-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.btn-romantic {
+    background: linear-gradient(135deg, #ff4f81, #ff2e63);
+    color: white;
+    border: none;
+    min-height: 48px;
+    padding: 14px 22px;
+    border-radius: 14px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(255, 46, 99, 0.35);
+    transition: all 0.25s;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.btn-romantic:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 25px rgba(255, 46, 99, 0.45);
+}
+
+.btn-romantic:active {
+    transform: scale(0.98);
+}
+
+.btn-play-music {
+    background: #fff;
+    color: var(--primary);
+    border: 2px solid var(--primary);
+    min-height: 48px;
+    padding: 12px 22px;
+    border-radius: 14px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.btn-play-music:hover {
+    background: #fff0f5;
+    transform: translateY(-2px);
+}
+
+.btn-play-music:active {
+    transform: scale(0.98);
+}
+
+.btn-outline {
+    background: transparent;
+    color: var(--text-muted);
+    border: 1px dashed #d8a0b0;
+    min-height: 44px;
+    padding: 10px 18px;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-outline:hover {
+    background: rgba(255, 255, 255, 0.5);
+    color: var(--text-dark);
+}
+
+/* ===================================================
+   VIDEO POPUP MODAL (FOR INCORRECT PASSWORD)
+   =================================================== */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
+    background: rgba(18, 5, 12, 0.82);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 99999;
+    padding: max(12px, env(safe-area-inset-top)) max(12px, env(safe-area-inset-right)) max(16px, env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-left));
+    opacity: 1;
+    transition: opacity 0.3s ease;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.modal-card {
+    background: #ffffff;
+    width: 100%;
+    max-width: 460px;
+    max-height: 92vh;
+    max-height: 92dvh;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+    border-radius: 24px;
+    padding: 26px 20px 20px;
+    box-shadow: var(--shadow-modal);
+    position: relative;
+    animation: modalScaleUp 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    text-align: center;
+    margin: auto;
+}
+
+@keyframes modalScaleUp {
+    0% {
+        transform: scale(0.75);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.modal-close {
+    position: absolute;
+    top: 10px;
+    right: 12px;
+    background: #f3f3f3;
+    border: none;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    font-size: 24px;
+    line-height: 1;
+    cursor: pointer;
+    color: #555;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    touch-action: manipulation;
+}
+
+.modal-close:hover {
+    background: var(--primary);
+    color: white;
+    transform: rotate(90deg);
+}
+
+.modal-header {
+    margin-bottom: 14px;
+    padding-right: 32px;
+}
+
+.modal-icon {
+    font-size: 38px;
+    margin-bottom: 6px;
+}
+
+.modal-header h2 {
+    font-size: 1.35rem;
+    color: #d81b60;
+    margin-bottom: 6px;
+}
+
+.modal-header p {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    line-height: 1.4;
+}
+
+.video-container {
+    width: 100%;
+    background: #000;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    margin-bottom: 16px;
+    position: relative;
+    aspect-ratio: 16 / 9;
+}
+
+.video-container video {
+    width: 100%;
+    height: 100%;
+    max-height: 48vh;
+    max-height: 48dvh;
+    display: block;
+    object-fit: contain;
+    outline: none;
+    background: #000;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: center;
+}
+
+.btn-try-again {
+    background: var(--primary-gradient);
+    color: white;
+    border: none;
+    min-height: 48px;
+    padding: 12px 28px;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s;
+    box-shadow: 0 6px 18px rgba(255, 79, 129, 0.35);
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.btn-try-again:hover {
+    background: var(--primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 22px rgba(255, 79, 129, 0.45);
+}
+
+.btn-try-again:active {
+    transform: scale(0.98);
+}
+
+/* ===================================================
+   CONFETTI CANVAS
+   =================================================== */
+.confetti-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+/* Utility classes */
+.hidden {
+    display: none !important;
+}
+
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.92);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* ===================================================
+   RESPONSIVE DESIGN (MOBILE & TABLET)
+   =================================================== */
+@media (max-width: 480px) {
+    body {
+        padding: 12px 10px 18px;
+    }
+
+    .card {
+        padding: 26px 18px;
+        border-radius: 22px;
+    }
+
+    .romantic-title {
+        font-size: 1.85rem;
+    }
+
+    .subtitle {
+        font-size: 0.9rem;
+        margin-bottom: 20px;
+    }
+
+    .celebration-badge {
+        font-size: 0.78rem;
+        padding: 5px 14px;
+    }
+
+    .celebration-title {
+        font-size: 2.05rem;
+        line-height: 1.2;
+    }
+
+    .princess-tag {
+        font-size: 1.02rem;
+        margin-bottom: 18px;
+    }
+
+    .letter-card {
+        padding: 20px 15px;
+        margin-bottom: 20px;
+        border-radius: 16px;
+    }
+
+    .letter-salutation {
+        font-size: 1.4rem;
+        margin-bottom: 10px;
+    }
+
+    .letter-body {
+        font-size: 0.92rem;
+        line-height: 1.68;
+        margin-bottom: 12px;
+    }
+
+    .letter-closing {
+        font-size: 0.98rem;
+    }
+
+    .modal-card {
+        padding: 22px 14px 16px;
+        border-radius: 20px;
+        max-height: 94vh;
+        max-height: 94dvh;
+    }
+
+    .modal-header h2 {
+        font-size: 1.25rem;
+    }
+
+    .modal-header p {
+        font-size: 0.85rem;
+    }
+
+    .video-container video {
+        max-height: 42vh;
+        max-height: 42dvh;
+    }
+
+    .btn-romantic, .btn-primary, .btn-play-music, .btn-try-again {
+        padding: 13px 18px;
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 360px) {
+    .card {
+        padding: 22px 14px;
+        border-radius: 18px;
+    }
+
+    .romantic-title {
+        font-size: 1.65rem;
+    }
+
+    .celebration-title {
+        font-size: 1.8rem;
+    }
+
+    .letter-body {
+        font-size: 0.88rem;
+    }
+}

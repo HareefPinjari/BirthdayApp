@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+    <meta name="theme-color" content="#ff758c">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="format-detection" content="telephone=no">
+    <title>❤️ Happy Birthday Ayesha Ji ❤️</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Floating Background Hearts -->
+    <div id="heartsContainer" class="hearts-container" aria-hidden="true"></div>
+
+    <div class="main-wrapper">
+
+        <!-- 1. LOGIN CARD -->
+        <section id="loginSection" class="card login-box">
+            <div class="badge-icon">🎂</div>
+            <h1 class="romantic-title">Birthday Surprise</h1>
+            <p class="subtitle">For the most special person in my life ❤️</p>
+
+            <form id="loginForm" onsubmit="event.preventDefault(); checkPassword();">
+                <div class="form-group">
+                    <label for="password" class="input-label">Enter Secret Password</label>
+                    <div class="input-container">
+                        <span class="input-icon">🔐</span>
+                        <input 
+                            type="password" 
+                            id="password" 
+                            placeholder="Enter secret password..." 
+                            autocomplete="off"
+                            autocorrect="off"
+                            autocapitalize="off"
+                            spellcheck="false"
+                            enterkeyhint="go"
+                            autofocus
+                        >
+                        <button type="button" id="togglePasswordBtn" class="toggle-eye" onclick="togglePasswordVisibility()" title="Show/Hide Password" aria-label="Show or Hide Password">
+                            👁️
+                        </button>
+                    </div>
+                </div>
+
+                <button type="submit" id="loginBtn" class="btn-primary">
+                    <span>Unlock Surprise 💖</span>
+                </button>
+            </form>
+
+            <!-- Feedback message -->
+            <p id="message" class="status-message"></p>
+
+            <!-- Cute Hint (Revealed after first correct password prank) -->
+            <div id="hintBox" class="hint-box hidden">
+                <span id="hintText">💡 Hint: Haha! Kaise Laga mera Mazak you! 😜 Ee loo - Correct password : <strong>laddu143</strong> 💕</span>
+            </div>
+        </section>
+
+        <!-- 2. BIRTHDAY CELEBRATION CARD (shown on correct password) -->
+        <section id="birthdaySection" class="card birthday-page hidden">
+            <h1 class="celebration-title">❤️ Happy Birthday ❤️</h1>
+            <p class="princess-tag">👑 My Princess Ayesha Ji 👑</p>
+
+            <div class="letter-card">
+                <p class="letter-salutation">My Dear fiancé,</p>
+                
+                <p class="letter-body">
+                    Today is all about celebrating the wonderful person you are! 
+                    Thank you for filling every single day of my life with boundless joy, warm smiles, 
+                    and unforgettable memories. You make my entire world brighter just by being in it. ✨
+                </p>
+                
+                <p class="letter-body">
+                    On this special birthday, I pray and wish for your deepest dreams to turn into reality. 
+                    May your year ahead be blessed with immense happiness, booming success, sound health, 
+                    and infinite laughter. You truly deserve all the beauty this universe has to offer. 🌹
+                </p>
+
+                <p class="letter-closing">
+                    Happy Birthday - Princess! 👑❤️<br>
+                    <strong>💕I Love You 💕</strong>
+                </p>
+            </div>
+
+            <div class="action-buttons">
+                <button class="btn-romantic" onclick="openSurpriseVideoModal()">
+                    Click Here, for Surprise
+                </button>
+                <button class="btn-play-music" id="musicBtn" onclick="toggleMusic()">
+                    🎵 Play Birthday Song
+                </button>
+                <button class="btn-outline" onclick="handleLockAgain()">
+                    🔒 Lock Again
+                </button>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- 3. POPUP MODAL FOR INCORRECT PASSWORD -->
+    <div id="videoPopup" class="modal-overlay hidden" onclick="handleOverlayClick(event)">
+        <div class="modal-card">
+            <button class="modal-close" onclick="closeVideoModal()" title="Close popup">&times;</button>
+            
+            <div class="modal-header">
+                <div class="modal-icon">😜🎬</div>
+                <h2>Oops! Wrong Password!</h2>
+                <p>Kya re... Kaise laga mera mazak! try again: 😂</p>
+            </div>
+
+            <div class="video-container">
+                <video id="birthdayVideo" controls playsinline webkit-playsinline x5-playsinline preload="auto">
+                    <!-- Clean alias -->
+                    <source src="wrong_password.mp4" type="video/mp4">
+                    <!-- Original filename -->
+                    <source src="AQOEYo1hvGTOgxf64QNK0SM_POoMS1QJd2805kBZ21jF_8b8D868D3LxaCgE8T56Y1NRTdMAjdK4dcVrLICb-RY_axQk4hP10bCmdWM.mp4" type="video/mp4">
+                    Your browser does not support playing this video.
+                </video>
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn-try-again" onclick="closeVideoModal()">
+                    Try Again 🔐
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Confetti Canvas -->
+    <canvas id="confettiCanvas" class="confetti-canvas"></canvas>
+
+    <!-- 4. POPUP MODAL FOR SURPRISE FUNNY VIDEO -->
+    <div id="surpriseVideoPopup" class="modal-overlay hidden" onclick="handleSurpriseOverlayClick(event)">
+        <div class="modal-card">
+            <button class="modal-close" onclick="closeSurpriseVideoModal()" title="Close popup">&times;</button>
+            
+            <div class="modal-header">
+                <div class="modal-icon">🎉🤣</div>
+                <h2>A Funny Surprise For You! 😂</h2>
+                <p>Hope this makes you laugh! Happy Birthday! ❤️</p>
+            </div>
+
+            <div class="video-container">
+                <video id="surpriseVideo" controls playsinline webkit-playsinline x5-playsinline preload="auto">
+                    <!-- Dummy funny video -->
+                    <source src="surprise_video.mp4" type="video/mp4">
+                    Your browser does not support playing this video.
+                </video>
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn-try-again" onclick="closeSurpriseVideoModal()">
+                    Close Video 💖
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 5. POPUP MODAL FOR WISHES VIDEO (ON LOCK AGAIN) -->
+    <div id="wishesVideoPopup" class="modal-overlay hidden" onclick="handleWishesOverlayClick(event)">
+        <div class="modal-card">
+            <button class="modal-close" onclick="closeWishesVideoModal()" title="Close popup">&times;</button>
+            
+            <div class="modal-header">
+                <div class="modal-icon">🎂💌</div>
+                <h2>Happy Birthday For You! Again 💖</h2>
+                <p>Special wishes before you go! Watch this sweet video: 🥰</p>
+            </div>
+
+            <div class="video-container">
+                <video id="wishesVideo" controls playsinline webkit-playsinline x5-playsinline preload="auto">
+                    <source src="Wishes_Video.mp4" type="video/mp4">
+                    <source src="wishes_video.mp4" type="video/mp4">
+                    Your browser does not support playing this video.
+                </video>
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn-try-again" onclick="closeWishesVideoModal()">
+                    Back to Lock Screen 🔒
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
