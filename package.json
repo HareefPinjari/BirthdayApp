@@ -4,7 +4,8 @@
   "description": "Birthday surprise website with password check & video popup",
   "main": "Model/server.js",
   "scripts": {
-    "start": "node Model/server.js"
+    "start": "node Model/server.js",
+    "build": "npm run"
   },
   "dependencies": {
     "gsap": "^3.15.1"
