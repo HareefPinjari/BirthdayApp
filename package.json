@@ -5,7 +5,7 @@
   "main": "Model/server.js",
   "scripts": {
     "start": "node Model/server.js",
-    "build": "npm run"
+    "build": "echo 'No build step required'"
   },
   "dependencies": {
     "gsap": "^3.15.1"
